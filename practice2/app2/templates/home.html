@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    {% comment %} <h3 style="color: #50414b;">HomePage</h3> {% endcomment %}
+    {% comment %} {{data}} {% endcomment %}
+    
+    {% if data %}
+
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">ID no</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Adress</th>
+            <th scope="col">Department</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for mdl in data %}
+            <tr>
+            {% comment %} {{mdl}} {% endcomment %}
+            <td>{{mdl.id_no}}</td>
+            <td>{{mdl.name}}</td>
+            <td>{{mdl.email}}</td>
+            <td>{{mdl.address}}</td>
+            <td>{{mdl.department_name}}</td>
+            <td><a class = "btn btn-danger text-white" href = {% url 'deletedata' mdl.id_no %}>Delete</a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+    {% else %}
+      <h3>There is no data available to show!!</h3>
+
+    {% endif %}
+
+{% endblock %}
